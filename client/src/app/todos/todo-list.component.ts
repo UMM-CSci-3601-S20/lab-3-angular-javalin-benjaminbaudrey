@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Todo, TodoRole } from './todo';
+import { Todo } from './todo';
 import { TodoService } from './todo.service';
 
 @Component({
@@ -14,9 +14,8 @@ export class TodoListComponent implements OnInit {
   public serverFilteredTodos: Todo[];
   public filteredTodos: Todo[];
 
-  public todoName: string;
-  public todoAge: number;
-  public todoRole: TodoRole;
+  public todoOwner: string;
+  public todoStatus: boolean;
   public todoCompany: string;
   public viewType: 'card' | 'list' = 'card';
 
@@ -33,8 +32,7 @@ export class TodoListComponent implements OnInit {
 
   getTodosFromServer() {
     this.todoService.getTodos({
-      role: this.todoRole,
-      age: this.todoAge
+      status: this.todoStatus
     }).subscribe(returnedTodos => {
       this.serverFilteredTodos = returnedTodos;
       this.updateFilter();
@@ -45,7 +43,7 @@ export class TodoListComponent implements OnInit {
 
   public updateFilter() {
     this.filteredTodos = this.todoService.filterTodos(
-      this.serverFilteredTodos, { name: this.todoName, company: this.todoCompany });
+      this.serverFilteredTodos, { owner: this.todoOwner, company: this.todoCompany });
   }
 
   /**

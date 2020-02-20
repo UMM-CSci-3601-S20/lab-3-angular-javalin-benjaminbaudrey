@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { Todo, TodoRole } from './todo';
+import { Todo } from './todo';
 
 @Injectable()
 export class TodoService {
@@ -11,14 +11,11 @@ export class TodoService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getTodos(filters?: { role?: TodoRole, age?: number, company?: string }): Observable<Todo[]> {
+  getTodos(filters?: {status?: boolean, company?: string }): Observable<Todo[]> {
     let httpParams: HttpParams = new HttpParams();
     if (filters) {
-      if (filters.role) {
-        httpParams = httpParams.set('role', filters.role);
-      }
-      if (filters.age) {
-        httpParams = httpParams.set('age', filters.age.toString());
+      if (filters.status) {
+        httpParams = httpParams.set('status', filters.status.toString());
       }
       if (filters.company) {
         httpParams = httpParams.set('company', filters.company);
@@ -33,16 +30,16 @@ export class TodoService {
     return this.httpClient.get<Todo>(this.todoUrl + '/' + id);
   }
 
-  filterTodos(todos: Todo[], filters: { name?: string, company?: string }): Todo[] {
+  filterTodos(todos: Todo[], filters: { owner?: string, company?: string }): Todo[] {
 
     let filteredTodos = todos;
 
-    // Filter by name
-    if (filters.name) {
-      filters.name = filters.name.toLowerCase();
+    // Filter by owner
+    if (filters.owner) {
+      filters.owner = filters.owner.toLowerCase();
 
       filteredTodos = filteredTodos.filter(todo => {
-        return todo.name.toLowerCase().indexOf(filters.name) !== -1;
+        return todo.owner.toLowerCase().indexOf(filters.owner) !== -1;
       });
     }
 
@@ -51,7 +48,7 @@ export class TodoService {
       filters.company = filters.company.toLowerCase();
 
       filteredTodos = filteredTodos.filter(todo => {
-        return todo.company.toLowerCase().indexOf(filters.company) !== -1;
+        return todo.body.toLowerCase().indexOf(filters.company) !== -1;
       });
     }
 
