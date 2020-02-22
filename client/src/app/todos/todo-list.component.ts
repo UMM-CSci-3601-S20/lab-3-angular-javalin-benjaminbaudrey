@@ -4,7 +4,7 @@ import { TodoService } from './todo.service';
 
 @Component({
     selector: 'app-todo-list-component',
-    templateUrl: 'todo-list.component.html',
+    templateUrl: './todo-list.component.html',
     styleUrls: ['./todo-list.component.scss'],
     providers: []
 })
@@ -21,6 +21,10 @@ export class TodoListComponent implements OnInit {
 
     constructor(private todoService: TodoService) {
 
+    }
+
+    getTodosFromServer() {
+        this.todoService.getTodos().subscribe();
     }
 
     // this will start an asynchronous operation that updates the todos list later
