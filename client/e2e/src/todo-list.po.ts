@@ -6,6 +6,10 @@ export class TodoPage{
     }
 }
 
+getUrl() {
+    return browser.getCurrentUrl();
+}
+
 getTodoCards() {
     return element(by.className('todo-cards-container')).all(by.tagName('app-todo-card'));
 }
