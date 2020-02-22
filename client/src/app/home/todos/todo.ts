@@ -3,4 +3,5 @@ export interface Todo {
     owner: string;
     category: string;
     status: boolean;
+    description: string;
 }
