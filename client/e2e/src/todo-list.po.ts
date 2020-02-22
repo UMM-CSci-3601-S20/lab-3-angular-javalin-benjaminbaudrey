@@ -1,0 +1,11 @@
+import {browser, by, element, Key, ElementFinder} from 'protractor';
+
+export class TodoPage{
+    navigateTo() {
+        return browser.get('/todos');
+    }
+}
+
+getTodoCards() {
+    return element(by.className('todo-cards-container')).all(by.tagName('app-todo-card'));
+}
