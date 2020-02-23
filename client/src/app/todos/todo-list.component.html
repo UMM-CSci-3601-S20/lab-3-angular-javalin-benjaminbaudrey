@@ -5,9 +5,17 @@
       <mat-card-header>
         <mat-card-title class="todo-list-title">Todos</mat-card-title>
       </mat-card-header>
-      <mat-card-content fxLayout="column" >
+      <mat-card-content fxLayout="column">
 
-
+        <!--Filtering by todo Owners within Angular-->
+        <div fxLayout="row wrap" fxLayoutGap="10px">
+          <mat-form-field class="todo-input-field">
+            <mat-label>Owner</mat-label>
+            <input matInput id="todo-owner-input" placeholder="Filter by owner"
+            [(ngModel)]="todoOwner" (input)="updateFilter()">
+          </mat-form-field>
+          
+        </div>
       </mat-card-content>
     </mat-card>
   </div>
