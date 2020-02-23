@@ -6,17 +6,20 @@
       <!-- Side navigation links -->
 
       <mat-list-item routerLink="/" routerLinkActive="drawer-list-item-active"
-      #routerLinkActiveInstance="routerLinkActive"
-      [attr.tabindex]="routerLinkActiveInstance.isActive ? 0 : -1"
-      [routerLinkActiveOptions]="{exact: true}" (click)="drawer.close()">
-      <mat-icon matListIcon>home</mat-icon>
-      Home
+        #routerLinkActiveInstance="routerLinkActive" [attr.tabindex]="routerLinkActiveInstance.isActive ? 0 : -1"
+        [routerLinkActiveOptions]="{exact: true}" (click)="drawer.close()">
+        <mat-icon matListIcon>home</mat-icon>
+        Home
       </mat-list-item>
 
-      <mat-list-item routerLink="/users" routerLinkActive="drawer-list-item-active"
-      (click)="drawer.close()">
+      <mat-list-item routerLink="/users" routerLinkActive="drawer-list-item-active" (click)="drawer.close()">
         <mat-icon matListIcon>people</mat-icon>
         Users
+      </mat-list-item>
+
+      <mat-list-item routerLink="/todos" routerLinkActive="drawer-list-item-active" (click)="drawer.close()">
+        <mat-icon matListIcon>assignment</mat-icon>
+        Todos
       </mat-list-item>
 
     </mat-nav-list>
@@ -24,8 +27,8 @@
 
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button type="button" aria-label="Toggle sidenav" mat-icon-button
-      (click)="drawer.toggle()" class="sidenav-button">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        class="sidenav-button">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span class="app-title">{{title}}</span>
