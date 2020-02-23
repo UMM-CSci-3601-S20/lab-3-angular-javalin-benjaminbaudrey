@@ -17,4 +17,10 @@ export class TodoPage {
         const title = element(by.className('todo-list-title')).getText();
         return title;
     }
+
+    typeInput(inputId: string, text: string) {
+        let input = element(by.id(inputId));
+        input.click();
+        input.sendKeys(text);
+    }
 }
