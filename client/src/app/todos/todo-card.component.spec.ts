@@ -25,9 +25,9 @@ describe('TodoCardComponent', () => {
     component.todo = {
       _id: 'chris_id',
       owner: 'Chris',
-      category: 'UMM',
+      category: 'homework',
       status: true,
-      description: 'admin'
+      body: 'lab 3'
     };
     fixture.detectChanges();
   });
