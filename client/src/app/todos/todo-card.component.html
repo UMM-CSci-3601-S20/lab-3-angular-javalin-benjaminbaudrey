@@ -1,0 +1,8 @@
+<mat-card class="todo-card" *ngIf="this.todo">
+    <mat-card-header>
+        <mat-card-title class="todo-card-owner">{{ this.todo.owner }}</mat-card-title>
+        <mat-card-subtitle class="todo-card-category">{{ "Category: " + this.todo.category }}</mat-card-subtitle>
+        <mat-card-subtitle class="todo-card-status">{{ "Task Complete? " +  this.todo.status }}</mat-card-subtitle>
+        <mat-card-subtitle class="todo-card-body">{{ this.todo.body }}</mat-card-subtitle>
+    </mat-card-header>
+</mat-card>
