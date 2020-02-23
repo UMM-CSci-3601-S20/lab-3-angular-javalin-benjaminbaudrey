@@ -13,9 +13,8 @@ export class TodoPage {
         return element(by.className('todo-cards-container')).all(by.tagName('app-todo-card'));
     }
 
-    /*getTodoTitle() {
+    getTodoTitle() {
         const title = element(by.className('todo-list-title')).getText();
         return title;
     }
-    */
 }

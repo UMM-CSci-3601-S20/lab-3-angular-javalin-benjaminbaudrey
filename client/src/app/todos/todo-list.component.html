@@ -11,10 +11,10 @@
         <div fxLayout="row wrap" fxLayoutGap="10px">
           <mat-form-field class="todo-input-field">
             <mat-label>Owner</mat-label>
-            <input matInput id="todo-owner-input" placeholder="Filter by owner"
-            [(ngModel)]="todoOwner" (input)="updateFilter()">
+            <input matInput id="todo-owner-input" placeholder="Filter by owner" [(ngModel)]="todoOwner"
+              (input)="updateFilter()">
           </mat-form-field>
-          
+
         </div>
       </mat-card-content>
     </mat-card>
@@ -22,13 +22,14 @@
 </div>
 
 <div fxLayout="row">
-  <div fxFlex fxFlex.gt-sm="80" fxFlexOffset.gt-sm="10" *ngIf="serverFilteredTodos; else todosError" >
+  <div fxFlex fxFlex.gt-sm="80" fxFlexOffset.gt-sm="10" *ngIf="serverFilteredTodos; else todosError">
     <!-- Switch between card and list view based on the viewType variable, set above in the mar-radio-group -->
     <div [ngSwitch]="viewType">
 
       <!-- Card grid view -->
       <div *ngSwitchCase="'card'" fxLayout="row wrap" fxLayoutGap="10px" class="todo-cards-container">
-        <app-todo-card simple="true" *ngFor="let todo of filteredTodos" class="todo-card" [todo]="todo" fxFlex="1 1 280px"></app-todo-card>
+        <app-todo-card simple="true" *ngFor="let todo of filteredTodos" class="todo-card" [todo]="todo"
+          fxFlex="1 1 280px"></app-todo-card>
       </div>
 
     </div>
@@ -48,4 +49,3 @@
   </ng-template>
 
 </div>
-

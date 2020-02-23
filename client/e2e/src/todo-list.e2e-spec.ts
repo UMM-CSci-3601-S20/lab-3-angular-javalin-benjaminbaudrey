@@ -8,11 +8,10 @@ describe('Todo List', () => {
         page = new TodoPage();
         page.navigateTo();
     });
-   /* //our todos page should be called todos
+    // our todos page should be called todos
     it('Should have the correct title', () => {
         expect(page.getTodoTitle()).toEqual('Todos');
     });
-    */
     // it should have some todo cards displayed
     // expecting getTodoCards to be an array
     it('Should have all the todo cards displayed', () => {
