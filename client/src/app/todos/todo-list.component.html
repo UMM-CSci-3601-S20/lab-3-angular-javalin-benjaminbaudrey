@@ -15,6 +15,12 @@
               (input)="updateFilter()">
           </mat-form-field>
 
+          <mat-form-field class="todo-input-field">
+            <mat-label>Limit</mat-label>
+            <input matInput id="todo-limit-input" placeholder="Limit" [(ngModel)]="todoLimit"
+              (input)="updateFilter()">
+          </mat-form-field>
+
         </div>
       </mat-card-content>
     </mat-card>

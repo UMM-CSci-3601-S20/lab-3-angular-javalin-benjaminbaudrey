@@ -11,7 +11,7 @@ export class TodoService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getTodos(filters?: { owner?: string, category?: string, status?: boolean, body?: string }): Observable<Todo[]> {
+  getTodos(filters?: { owner?: string, category?: string, status?: boolean, body?: string, limit?: number }): Observable<Todo[]> {
     let httpParams: HttpParams = new HttpParams();
     if (filters) {
       if (filters.owner) {
@@ -24,7 +24,7 @@ export class TodoService {
     });
   }
 
-  filterTodos(todos: Todo[], filters: { owner?: string, category?: string, status?: boolean, body?: string }): Todo[] {
+  filterTodos(todos: Todo[], filters: { owner?: string, category?: string, status?: boolean, body?: string, limit?: number }): Todo[] {
 
     let filteredTodos = todos;
 
@@ -35,6 +35,11 @@ export class TodoService {
       filteredTodos = filteredTodos.filter(todo => {
         return todo.owner.toLowerCase().indexOf(filters.owner) !== -1; // -1 is returned if index with substring not found
       });
+    }
+
+    //Limit todos
+    if (filters.limit) {
+      filteredTodos = filteredTodos.filter((item, index) => index > 2 );
     }
 
     return filteredTodos;
