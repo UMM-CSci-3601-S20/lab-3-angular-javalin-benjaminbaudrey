@@ -107,6 +107,25 @@ describe('Todo service: ', () => {
 
     expect(req.request.params.get('owner')).toEqual('Jamie');
 
+    req.flush(testTodos);
   });
+  /*
+  it('getTodos() calls api/todos with filter parameter \'category\'', () => {
+
+    todoService.getTodos({ category: 'video games' }).subscribe(
+      todos => expect(todos).toBe(testTodos)
+    );
+
+    const req = httpTestingController.expectOne(
+      (request) => request.url.startsWith(todoService.todoUrl) && request.params.has('category')
+    );
+
+    expect(req.request.method).toEqual('GET');
+    expect(req.request.params.get('category')).toEqual('video games');
+
+    req.flush(testTodos);
+  });
+  currently failing because this has not been implemented yet
+  */
 
 });

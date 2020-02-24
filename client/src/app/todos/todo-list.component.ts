@@ -18,14 +18,9 @@ export class TodoListComponent implements OnInit {
   public todoCategory: string;
   public todoStatus: boolean;
   public todoBody: string;
-  public viewType: 'card' | 'list' = 'card';
 
 
   // Inject the TodoService into this component.
-  // That's what happens in the following constructor.
-  //
-  // We can call upon the service for interacting
-  // with the server.
 
   constructor(private todoService: TodoService) {
 
