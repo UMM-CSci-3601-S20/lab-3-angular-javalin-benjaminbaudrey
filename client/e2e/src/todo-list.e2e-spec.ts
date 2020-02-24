@@ -1,5 +1,5 @@
 import { TodoPage } from './todo-list.po';
-import { browser, protractor, by, element } from 'protractor';
+import { browser, protractor, by, element, promise } from 'protractor';
 
 describe('Todo List', () => {
     let page: TodoPage;
@@ -64,13 +64,11 @@ describe('Todo List', () => {
         expect(categories).not.toContain('groceries');
 
     });
+    
+    it('Should type ipsum into the body filter and check that the correct number of elements were returned', () => {
+        page.typeInput('todo-body-input', 'Ipsum');
+        expect(page.getTodoCards().count()).toEqual(72);
+        });
 
-    it('Should type ipsum into the body filter and check that the correct elements were returned', () => {
-        page.typeInput('todo-body-input', 'ipsum');
-
-        let bodies = page.getTodoCards().map(e => e.element(by.className('todo-card-body')).getText());
-
-        expect(bodies).toContain('ipsum');
     });
 
-});

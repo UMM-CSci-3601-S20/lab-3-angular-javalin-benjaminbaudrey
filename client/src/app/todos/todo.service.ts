@@ -21,6 +21,9 @@ export class TodoService {
       if (filters.category) {
         httpParams = httpParams.set('category', filters.category);
       }
+      if (filters.body) {
+        httpParams = httpParams.set('body', filters.body);
+      }
     }
     return this.httpClient.get<Todo[]>(this.todoUrl, {
       params: httpParams,
@@ -46,6 +49,14 @@ export class TodoService {
 
       filteredTodos = filteredTodos.filter(todo => {
         return todo.category.toLowerCase().indexOf(filters.category) !== -1;
+      });
+    }
+    // Filter by body
+    if (filters.body) {
+      filters.body = filters.body.toLowerCase();
+
+      filteredTodos = filteredTodos.filter(todo => {
+        return todo.body.toLowerCase().indexOf(filters.body) !== -1;
       });
     }
 

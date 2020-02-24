@@ -94,7 +94,7 @@ describe('Todo list', () => {
         expect(todoList.serverFilteredTodos.filter((todo:Todo) => todo.body === 'minecraft').length).toBe(1);
     });
     it('has 2 todos with e in the body', () => {
-        expect(todoList.serverFilteredTodos.filter((todo:Todo) => todo.body.search('e')).length).toBe(2); // fails on one, as expected
+        expect(todoList.serverFilteredTodos.filter((todo:Todo) => todo.body.includes('e')).length).toBe(2); // fails on one, as expected
     });
 
 });
