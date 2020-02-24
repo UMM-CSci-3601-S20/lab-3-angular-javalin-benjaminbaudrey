@@ -142,4 +142,37 @@ describe('Todo service: ', () => {
     req.flush(testTodos);
   });
 
+  it('getTodos() calls api/todos with filter parameter\'status\'', () => {
+
+    todoService.getTodos({ status: true }).subscribe(
+      todos => expect(todos).toBe(testTodos)
+    );
+
+    const req = httpTestingController.expectOne(
+      (request) => request.url.startsWith(todoService.todoUrl) && request.params.has('status')
+    );
+
+    expect(req.request.method).toEqual('GET');
+    expect(req.request.params.get('status')).toContain('true');
+
+    req.flush(testTodos);
+  });
+
+  it('filterTodos() filters by owner', () => {
+    expect(testTodos.length).toBe(3);
+    const todoOwner = 'Chris';
+    expect(todoService.filterTodos(testTodos, { owner: todoOwner }).length).toBe(1);
+  });
+
+  it('filterTodos() filters by category', () => {
+    expect(testTodos.length).toBe(3);
+    const todoCategory = 'groceries';
+    expect(todoService.filterTodos(testTodos, { category: todoCategory }).length).toBe(1);
+  });
+
+  it('filterTodos() filters by body', () => {
+    expect(testTodos.length).toBe(3);
+    const todoBody = 'minecraft';
+    expect(todoService.filterTodos(testTodos, { body: todoBody }).length).toBe(1);
+  });
 });

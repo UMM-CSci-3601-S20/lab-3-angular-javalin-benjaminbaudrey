@@ -91,10 +91,17 @@ describe('Todo list', () => {
     });
     // testing body filter
     it('has 1 todo with minecraft in the body', () => {
-        expect(todoList.serverFilteredTodos.filter((todo:Todo) => todo.body === 'minecraft').length).toBe(1);
+        expect(todoList.serverFilteredTodos.filter((todo: Todo) => todo.body === 'minecraft').length).toBe(1);
     });
     it('has 2 todos with e in the body', () => {
-        expect(todoList.serverFilteredTodos.filter((todo:Todo) => todo.body.includes('e')).length).toBe(2); // fails on one, as expected
+        expect(todoList.serverFilteredTodos.filter((todo: Todo) => todo.body.includes('e')).length).toBe(2); // fails on one, as expected
+    });
+    // testing status filter
+    it('has 2 todos with true status', () => {
+        expect(todoList.serverFilteredTodos.filter((todo: Todo) => todo.status === true).length).toBe(2);
+    });
+    it('has 1 todo with false status', () => {
+        expect(todoList.serverFilteredTodos.filter((todo: Todo) => todo.status === false).length).toBe(1);
     });
 
 });

@@ -23,7 +23,7 @@ describe('Todo List', () => {
 
         // should only see todos from Blanche
         page.getTodoCards().each(e => {
-            expect(e.element(by.className('todo-card-owner')).getText()).toEqual('Blanche'); // also tested against 'wrong' failed as expected
+            expect(e.element(by.className('todo-card-owner')).getText()).toEqual('Blanche'); // also tested against wrong failed as expected
         });
     });
 
@@ -64,11 +64,18 @@ describe('Todo List', () => {
         expect(categories).not.toContain('groceries');
 
     });
-    
+
     it('Should type ipsum into the body filter and check that the correct number of elements were returned', () => {
         page.typeInput('todo-body-input', 'Ipsum');
         expect(page.getTodoCards().count()).toEqual(71);
-        });
-
     });
+
+    it('Should select a status and check that it returned the correct todos', () => {
+        page.selectMatSelectValue('todo-status-select', 'complete');
+
+        page.getTodoCards().each(e => {
+            expect(e.element(by.className('todo-card-status')).getText()).toEqual('true');
+        });
+    });
+});
 
