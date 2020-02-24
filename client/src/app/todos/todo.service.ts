@@ -48,11 +48,6 @@ export class TodoService {
       });
     }
 
-    //Limit todos
-    if (filters.limit) {
-      filteredTodos = filteredTodos.filter((item, index) => index > 2 );
-    }
-
     return filteredTodos;
   }
 }

@@ -89,7 +89,12 @@ describe('Todo list', () => {
     it('has no todos with minecraft as the category', () => {
         expect(todoList.serverFilteredTodos.filter((todo: Todo) => todo.category === 'minecraft').length).toBe(0);
     });
-
+    // testing limit filter
+    it('has 2 todos', () => {
+      todoList.todoLimit = 2;
+      todoList.updateFilter();
+      expect(todoList.filteredTodos.length).toBe(2);
+    })
 });
 
 describe('Misbehaving Todo List', () => {
