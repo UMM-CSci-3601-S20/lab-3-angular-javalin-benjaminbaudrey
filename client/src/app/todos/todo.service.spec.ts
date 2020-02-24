@@ -157,4 +157,22 @@ describe('Todo service: ', () => {
 
     req.flush(testTodos);
   });
+
+  it('filterTodos() filters by owner', () => {
+    expect(testTodos.length).toBe(3);
+    const todoOwner = 'Chris';
+    expect(todoService.filterTodos(testTodos, { owner: todoOwner }).length).toBe(1);
+  });
+
+  it('filterTodos() filters by category', () => {
+    expect(testTodos.length).toBe(3);
+    const todoCategory = 'groceries';
+    expect(todoService.filterTodos(testTodos, { category: todoCategory }).length).toBe(1);
+  });
+
+  it('filterTodos() filters by body', () => {
+    expect(testTodos.length).toBe(3);
+    const todoBody = 'minecraft';
+    expect(todoService.filterTodos(testTodos, { body: todoBody }).length).toBe(1);
+  });
 });
