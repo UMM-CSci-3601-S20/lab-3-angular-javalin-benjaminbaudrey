@@ -67,7 +67,7 @@ describe('Todo List', () => {
     
     it('Should type ipsum into the body filter and check that the correct number of elements were returned', () => {
         page.typeInput('todo-body-input', 'Ipsum');
-        expect(page.getTodoCards().count()).toEqual(72);
+        expect(page.getTodoCards().count()).toEqual(71);
         });
 
     });
