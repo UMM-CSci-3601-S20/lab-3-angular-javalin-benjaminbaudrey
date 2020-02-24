@@ -65,4 +65,11 @@ describe('Todo List', () => {
 
     });
 
+    it('Should type 2 in the limit filter and check that it returned the correct todos', () => {
+      page.typeInput('todo-limit-input', '2');
+
+      // should only see todos from Blanche
+      expect(page.getTodoCards().count()).toBe(2);
+  });
+
 });
