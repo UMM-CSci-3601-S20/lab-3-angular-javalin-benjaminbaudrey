@@ -2,8 +2,8 @@
     <mat-card-header>
         <mat-card-title class="todo-card-owner">{{ this.todo.owner }}</mat-card-title>
             <mat-card-subtitle class="todo-card-category">{{ this.todo.category }}</mat-card-subtitle>
-            <mat-card-subtitle class="todo-card-status-true" *ngIf= this.todo.status>Complete</mat-card-subtitle>
-            <mat-card-subtitle class="todo-card-status-false" *ngIf= !this.todo.status>Incomplete</mat-card-subtitle>
+            <mat-card-subtitle class="todo-card-status" id = "true" *ngIf= this.todo.status>Complete</mat-card-subtitle>
+            <mat-card-subtitle class="todo-card-status" id = "false" *ngIf= !this.todo.status>Incomplete</mat-card-subtitle>
         <mat-card-subtitle class="todo-card-body">{{ this.todo.body }}</mat-card-subtitle>
     </mat-card-header>
 </mat-card>
