@@ -75,7 +75,7 @@ describe('Todo List', () => {
         page.selectMatSelectValue('todo-status-select', 'complete');
 
         page.getTodoCards().each(e => {
-            expect(e.element(by.className('todo-card-status')).getText()).toEqual('true');
+            expect(e.element(by.className('todo-card-status')).getText()).toEqual('Complete');
         });
     });
     // limit displaye todos
