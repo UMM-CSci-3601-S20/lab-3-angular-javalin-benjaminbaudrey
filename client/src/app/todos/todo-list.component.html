@@ -21,6 +21,12 @@
             <input matInput id="todo-category-input" placeholder="Filter by category" [(ngModel)]="todoCategory"
               (input)="updateFilter()">
           </mat-form-field>
+          
+          <mat-form-field class="input-field">
+              <mat-label>Limit</mat-label>
+              <input matInput id="todo-limit-input" type="number" placeholder="Limit displayed todos"
+              min="0" max="300" [(ngModel)]="todoLimit" (input)="getTodosFromServer()">
+            </mat-form-field>
         </div>
 
         <div fxLayout="row wrap" fxLayoutGap="10px">
@@ -39,13 +45,17 @@
               <mat-option value="incomplete">Incomplete</mat-option>
             </mat-select>
           </mat-form-field>
-
-          <mat-form-field class="input-field">
-              <mat-label>Limit</mat-label>
-              <input matInput id="todo-limit-input" type="number" placeholder="Limit displayed todos"
-              min="0" max="300" [(ngModel)]="todoLimit" (input)="getTodosFromServer()">
-            </mat-form-field>
-
+          
+          <mat-form-field class="todo-input-field">
+            <mat-label>Sort By</mat-label>
+            <mat-select (selectionChange)="getTodosFromServer()" [(ngModel)]="orderBy" id="todo-order-select">
+              <mat-option>--</mat-option>
+              <mat-option value="owner">Owner</mat-option>
+              <mat-option value="category">Category</mat-option>
+              <mat-option value="status">Status</mat-option>
+              <mat-option value="body">Body</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
 
       </mat-card-content>
