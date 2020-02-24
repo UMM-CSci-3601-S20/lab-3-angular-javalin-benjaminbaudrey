@@ -74,4 +74,39 @@ describe('Todo service: ', () => {
     req.flush(testTodos);
   });
 
+  it('getTodos() calls api/todos with filter parameter (Pat) \'owner\'', () => {
+
+    todoService.getTodos({ owner: 'Pat' }).subscribe(
+      todos => expect(todos).toBe(testTodos)
+    );
+
+    const req = httpTestingController.expectOne(
+      (request) => request.url.startsWith(todoService.todoUrl) && request.params.has('owner')
+    );
+    // Request (singular) should be made to todoUrl and should be a GET request
+    expect(req.request.method).toEqual('GET');
+
+    // Request parameter should be 'owner'
+    expect(req.request.params.get('owner')).toEqual('Pat'); // expected owner also tested against 'Carl' and failed, as expected
+
+    req.flush(testTodos);
+  });
+
+  // same sort of test as above, different owner
+  it('getTodos() calls api/todos with filter parameter (Jamie) \'owner\'', () => {
+
+    todoService.getTodos({ owner: 'Jamie' }).subscribe(
+      todos => expect(todos).toBe(testTodos)
+    );
+
+    const req = httpTestingController.expectOne(
+      (request) => request.url.startsWith(todoService.todoUrl) && request.params.has('owner')
+    );
+
+    expect(req.request.method).toEqual('GET');
+
+    expect(req.request.params.get('owner')).toEqual('Jamie');
+
+  });
+
 });
