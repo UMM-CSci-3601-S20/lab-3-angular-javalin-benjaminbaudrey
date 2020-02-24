@@ -3,7 +3,11 @@
     position: relative;
     justify-content: space-around;
   }
-  
+
+  .todo-list-title{
+    margin-right: 100px;
+    font-size: 2em;
+  }
   .todo-card {
     margin-bottom: 10px;
     justify-content: center;
@@ -11,7 +15,7 @@
     align-items: center;
     justify-items: center;
   }
-  
+
   .search-card {
     border: 5px solid black;
     border-radius: 50;
@@ -25,5 +29,5 @@
   #page-background {
     background-color: blue;
     fill-opacity: 80%;
-    
+
   }
