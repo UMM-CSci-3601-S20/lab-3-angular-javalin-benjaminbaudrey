@@ -1,12 +1,29 @@
 .todo-cards-container {
     width: 100%;
     position: relative;
+    justify-content: space-around;
   }
   
   .todo-card {
     margin-bottom: 10px;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
   }
   
   .search-card {
+    border: 5px solid black;
+    border-radius: 50;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
     margin-bottom: 10px;
+  }
+
+  #page-background {
+    background-color: blue;
+    fill-opacity: 80%;
+    
   }
