@@ -18,7 +18,7 @@ describe('Todo List', () => {
         expect(page.getTodoCards().count()).toBeGreaterThan(0);
     });
     // it should display only todos that match a given filter
-    it('Should type something in the owner filter and check that it returned the correct todos', () => {
+    it('Should type Blanche in the owner filter and check that it returned the correct todos', () => {
         page.typeInput('todo-owner-input', 'Blanche');
 
         // should only see todos from Blanche
@@ -27,7 +27,7 @@ describe('Todo List', () => {
         });
     });
 
-    it('Should type a partial owner into the owner filter anc check that the correct elements were returned', () => {
+    it('Should type a partial owner into the owner filter and check that the correct elements were returned', () => {
         page.typeInput('todo-owner-input', 'b');
         // grab all the owners from the todo-card-owner class and convert it to text
         let owners = page.getTodoCards().map(e => e.element(by.className('todo-card-owner')).getText());
@@ -39,6 +39,29 @@ describe('Todo List', () => {
         expect(owners).not.toContain('Fry');
         expect(owners).not.toContain('Workman');
         expect(owners).not.toContain('Dawn');
+
+    });
+    // category testing
+
+    it('Should type Blanche in the owner filter and check that it returned the correct todos', () => {
+        page.typeInput('todo-category-input', 'video games');
+
+        // should only see todos from Blanche
+        page.getTodoCards().each(e => {
+            expect(e.element(by.className('todo-card-category')).getText()).toEqual('video games');
+        });
+    });
+
+    it('Should type home into the category filter and check that the correct elements were returned', () => {
+        page.typeInput('todo-category-input', 'd');
+
+        let categories = page.getTodoCards().map(e => e.element(by.className('todo-card-category')).getText());
+
+        expect(categories).toContain('video games');
+        expect(categories).toContain('software design');
+
+        expect(categories).not.toContain('homework');
+        expect(categories).not.toContain('groceries');
 
     });
 

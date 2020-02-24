@@ -23,10 +23,6 @@ export class TodoListComponent implements OnInit {
 
 
   // Inject the TodoService into this component.
-  // That's what happens in the following constructor.
-  //
-  // We can call upon the service for interacting
-  // with the server.
 
   constructor(private todoService: TodoService) {
 
