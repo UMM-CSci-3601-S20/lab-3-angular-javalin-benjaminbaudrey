@@ -74,58 +74,6 @@ describe('Todo service: ', () => {
     req.flush(testTodos);
   });
 
-  it('getTodos() calls api/todos with filter parameter (Pat) \'owner\'', () => {
-
-    todoService.getTodos({ owner: 'Pat' }).subscribe(
-      todos => expect(todos).toBe(testTodos)
-    );
-
-    const req = httpTestingController.expectOne(
-      (request) => request.url.startsWith(todoService.todoUrl) && request.params.has('owner')
-    );
-    // Request (singular) should be made to todoUrl and should be a GET request
-    expect(req.request.method).toEqual('GET');
-
-    // Request parameter should be 'owner'
-    expect(req.request.params.get('owner')).toEqual('Pat'); // expected owner also tested against 'Carl' and failed, as expected
-
-    req.flush(testTodos);
-  });
-
-  // same sort of test as above, different owner
-  it('getTodos() calls api/todos with filter parameter (Jamie) \'owner\'', () => {
-
-    todoService.getTodos({ owner: 'Jamie' }).subscribe(
-      todos => expect(todos).toBe(testTodos)
-    );
-
-    const req = httpTestingController.expectOne(
-      (request) => request.url.startsWith(todoService.todoUrl) && request.params.has('owner')
-    );
-
-    expect(req.request.method).toEqual('GET');
-
-    expect(req.request.params.get('owner')).toEqual('Jamie');
-
-    req.flush(testTodos);
-  });
-
-  it('getTodos() calls api/todos with filter parameter \'category\'', () => {
-
-    todoService.getTodos({ category: 'video games' }).subscribe(
-      todos => expect(todos).toBe(testTodos)
-    );
-
-    const req = httpTestingController.expectOne(
-      (request) => request.url.startsWith(todoService.todoUrl) && request.params.has('category')
-    );
-
-    expect(req.request.method).toEqual('GET');
-    expect(req.request.params.get('category')).toEqual('video games');
-
-    req.flush(testTodos);
-  });
-
   it('getTodos() calls api/todos with filter parameter \'body\'', () => {
 
     todoService.getTodos({ body: 'ipsum' }).subscribe(
@@ -158,6 +106,22 @@ describe('Todo service: ', () => {
     req.flush(testTodos);
   });
 
+  it('getTodos() calls api/todos with filter parameter\'limit\'', () => {
+
+    todoService.getTodos({ limit: 20 }).subscribe(
+      todos => expect(todos).toBe(testTodos)
+    );
+
+    const req = httpTestingController.expectOne(
+      (request) => request.url.startsWith(todoService.todoUrl) && request.params.has('limit')
+    );
+
+    expect(req.request.method).toEqual('GET');
+    expect(req.request.params.get('limit').length).toBeLessThanOrEqual(20);
+
+    req.flush(testTodos);
+  });
+
   it('filterTodos() filters by owner', () => {
     expect(testTodos.length).toBe(3);
     const todoOwner = 'Chris';
@@ -175,4 +139,5 @@ describe('Todo service: ', () => {
     const todoBody = 'minecraft';
     expect(todoService.filterTodos(testTodos, { body: todoBody }).length).toBe(1);
   });
+
 });

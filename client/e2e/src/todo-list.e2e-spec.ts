@@ -64,18 +64,25 @@ describe('Todo List', () => {
         expect(categories).not.toContain('groceries');
 
     });
+    // filter by body
 
     it('Should type ipsum into the body filter and check that the correct number of elements were returned', () => {
         page.typeInput('todo-body-input', 'Ipsum');
         expect(page.getTodoCards().count()).toEqual(71);
     });
 
-    it('Should select a status and check that it returned the correct todos', () => {
+    it('Should select a status and check that it returned only todos with true status', () => {
         page.selectMatSelectValue('todo-status-select', 'complete');
 
         page.getTodoCards().each(e => {
             expect(e.element(by.className('todo-card-status')).getText()).toEqual('true');
         });
     });
+    // limit displaye todos
+    it('Should select a limit of 20 and check that it returned at most 20 todos', () => {
+        page.typeInput('todo-limit-input', '20');
+        expect(page.getTodoCards().count()).toBeLessThanOrEqual(20);
+    });
 });
+
 
