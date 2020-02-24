@@ -71,7 +71,7 @@ describe('Todo List', () => {
         expect(page.getTodoCards().count()).toEqual(71);
     });
 
-    it('Should select a status and check that it returned the correct todos', () => {
+    it('Should select a status and check that it returned only todos with true status', () => {
         page.selectMatSelectValue('todo-status-select', 'complete');
 
         page.getTodoCards().each(e => {
