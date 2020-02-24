@@ -71,6 +71,7 @@ describe('Todo list', () => {
     it('contains a todo with owner \'Pat\'', () => {
         expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.owner === 'Pat')).toBe(true);
     });
+
     it('contains a todo with owner \'Jamie\'', () => {
         expect(todoList.serverFilteredTodos.some((todo: Todo) => todo.owner === 'Jamie')).toBe(true);
     });
@@ -80,6 +81,13 @@ describe('Todo list', () => {
     });
     it('has no todos with Blanche as the owner', () => {
         expect(todoList.serverFilteredTodos.filter((todo: Todo) => todo.owner === 'Blanche').length).toBe(0);
+    });
+    // testing category filter
+    it('has 1 todo with homework as the category', () => {
+        expect(todoList.serverFilteredTodos.filter((todo: Todo) => todo.category === 'homework').length).toBe(1);
+    });
+    it('has no todos with minecraft as the category', () => {
+        expect(todoList.serverFilteredTodos.filter((todo: Todo) => todo.category === 'minecraft').length).toBe(0);
     });
 
 });
