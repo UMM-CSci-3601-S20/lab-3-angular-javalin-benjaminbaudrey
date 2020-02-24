@@ -40,6 +40,7 @@ export class TodoService {
       });
     }
 
+    // Filter by category
     if (filters.category) {
       filters.category = filters.category.toLowerCase();
 
