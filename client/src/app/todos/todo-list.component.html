@@ -40,6 +40,12 @@
             </mat-select>
           </mat-form-field>
 
+          <mat-form-field class="input-field">
+              <mat-label>Limit</mat-label>
+              <input matInput id="todo-limit-input" type="number" placeholder="Limit displayed todos"
+              min="0" max="300" [(ngModel)]="todoLimit" (input)="getTodosFromServer()">
+            </mat-form-field>
+
         </div>
 
       </mat-card-content>
