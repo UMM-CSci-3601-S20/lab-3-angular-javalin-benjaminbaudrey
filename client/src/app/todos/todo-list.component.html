@@ -22,6 +22,16 @@
               (input)="updateFilter()">
           </mat-form-field>
         </div>
+        
+        <div fxLayout="row wrap" fxLayoutGap="10px">
+          <!--Filtering todos by body on the server-->
+          <mat-form-field class="todo-input-field">
+            <mat-label>Body</mat-label>
+            <input matInput id="todo-body-input" type="string" placeholder="Filter by body"
+            [(ngModel)]="todoBody" (input)="getTodosFromServer()">
+          </mat-form-field>
+        </div>
+
       </mat-card-content>
     </mat-card>
   </div>

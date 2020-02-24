@@ -109,7 +109,7 @@ describe('Todo service: ', () => {
 
     req.flush(testTodos);
   });
-  /*
+
   it('getTodos() calls api/todos with filter parameter \'category\'', () => {
 
     todoService.getTodos({ category: 'video games' }).subscribe(
@@ -125,7 +125,21 @@ describe('Todo service: ', () => {
 
     req.flush(testTodos);
   });
-  currently failing because this has not been implemented yet
-  */
+
+  it('getTodos() calls api/todos with filter parameter \'body\'', () => {
+
+    todoService.getTodos({ body: 'ipsum' }).subscribe(
+      todos => expect(todos).toBe(testTodos)
+    );
+
+    const req = httpTestingController.expectOne(
+      (request) => request.url.startsWith(todoService.todoUrl) && request.params.has('body')
+    );
+
+    expect(req.request.method).toEqual('GET');
+    expect(req.request.params.get('body')).toContain('ipsum');
+
+    req.flush(testTodos);
+  });
 
 });
