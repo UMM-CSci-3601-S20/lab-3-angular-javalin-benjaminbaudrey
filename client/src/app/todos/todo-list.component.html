@@ -15,6 +15,12 @@
               (input)="updateFilter()">
           </mat-form-field>
 
+          <!--Filtering by todo Category within Angular-->
+          <mat-form-field class="todo-input-field">
+            <mat-label>Category</mat-label>
+            <input matInput id="todo-category-input" placeholder="Filter by category" [(ngModel)]="todoCategory"
+              (input)="updateFilter()">
+          </mat-form-field>
         </div>
       </mat-card-content>
     </mat-card>
@@ -23,16 +29,13 @@
 
 <div fxLayout="row">
   <div fxFlex fxFlex.gt-sm="80" fxFlexOffset.gt-sm="10" *ngIf="serverFilteredTodos; else todosError">
-    <!-- Switch between card and list view based on the viewType variable, set above in the mar-radio-group -->
-    <div [ngSwitch]="viewType">
 
       <!-- Card grid view -->
-      <div *ngSwitchCase="'card'" fxLayout="row wrap" fxLayoutGap="10px" class="todo-cards-container">
+      <div fxLayout="row wrap" fxLayoutGap="10px" class="todo-cards-container">
         <app-todo-card simple="true" *ngFor="let todo of filteredTodos" class="todo-card" [todo]="todo"
           fxFlex="1 1 280px"></app-todo-card>
       </div>
 
-    </div>
   </div>
 
   <!-- Maybe this should be a pop-up instead of just a text message? Not sure. -->
