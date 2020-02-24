@@ -4,3 +4,11 @@
     justify-content: fill;
     display: flex;
 }
+
+.todo-card-status-true{
+  color: green;
+}
+
+.todo-card-status-false{
+  color: red;
+}
