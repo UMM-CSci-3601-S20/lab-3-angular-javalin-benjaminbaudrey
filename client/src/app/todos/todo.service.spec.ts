@@ -142,4 +142,19 @@ describe('Todo service: ', () => {
     req.flush(testTodos);
   });
 
+  it('getTodos() calls api/todos with filter parameter\'status\'', () => {
+
+    todoService.getTodos({ status: true }).subscribe(
+      todos => expect(todos).toBe(testTodos)
+    );
+
+    const req = httpTestingController.expectOne(
+      (request) => request.url.startsWith(todoService.todoUrl) && request.params.has('status')
+    );
+
+    expect(req.request.method).toEqual('GET');
+    expect(req.request.params.get('status')).toContain('true');
+
+    req.flush(testTodos);
+  });
 });
