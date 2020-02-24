@@ -89,12 +89,28 @@ describe('Todo list', () => {
     it('has no todos with minecraft as the category', () => {
         expect(todoList.serverFilteredTodos.filter((todo: Todo) => todo.category === 'minecraft').length).toBe(0);
     });
+
+    // testing body filter
+    it('has 1 todo with minecraft in the body', () => {
+        expect(todoList.serverFilteredTodos.filter((todo: Todo) => todo.body === 'minecraft').length).toBe(1);
+    });
+    it('has 2 todos with e in the body', () => {
+        expect(todoList.serverFilteredTodos.filter((todo: Todo) => todo.body.includes('e')).length).toBe(2); // fails on one, as expected
+    });
+    // testing status filter
+    it('has 2 todos with true status', () => {
+        expect(todoList.serverFilteredTodos.filter((todo: Todo) => todo.status === true).length).toBe(2);
+    });
+    it('has 1 todo with false status', () => {
+        expect(todoList.serverFilteredTodos.filter((todo: Todo) => todo.status === false).length).toBe(1);
+    });
     // testing limit filter
     it('has 2 todos', () => {
       todoList.todoLimit = 2;
       todoList.updateFilter();
       expect(todoList.filteredTodos.length).toBe(2);
     })
+
 });
 
 describe('Misbehaving Todo List', () => {

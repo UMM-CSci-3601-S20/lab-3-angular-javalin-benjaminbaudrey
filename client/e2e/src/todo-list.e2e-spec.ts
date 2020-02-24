@@ -1,5 +1,5 @@
 import { TodoPage } from './todo-list.po';
-import { browser, protractor, by, element } from 'protractor';
+import { browser, protractor, by, element, promise } from 'protractor';
 
 describe('Todo List', () => {
     let page: TodoPage;
@@ -23,7 +23,7 @@ describe('Todo List', () => {
 
         // should only see todos from Blanche
         page.getTodoCards().each(e => {
-            expect(e.element(by.className('todo-card-owner')).getText()).toEqual('Blanche'); // also tested against 'wrong' failed as expected
+            expect(e.element(by.className('todo-card-owner')).getText()).toEqual('Blanche'); // also tested against wrong failed as expected
         });
     });
 
@@ -52,7 +52,7 @@ describe('Todo List', () => {
         });
     });
 
-    it('Should type home into the category filter and check that the correct elements were returned', () => {
+    it('Should type d into the category filter and check that the correct elements were returned', () => {
         page.typeInput('todo-category-input', 'd');
 
         let categories = page.getTodoCards().map(e => e.element(by.className('todo-card-category')).getText());
@@ -65,11 +65,24 @@ describe('Todo List', () => {
 
     });
 
+    it('Should type ipsum into the body filter and check that the correct number of elements were returned', () => {
+        page.typeInput('todo-body-input', 'Ipsum');
+        expect(page.getTodoCards().count()).toEqual(71);
+    });
+
+    it('Should select a status and check that it returned the correct todos', () => {
+        page.selectMatSelectValue('todo-status-select', 'complete');
+
+        page.getTodoCards().each(e => {
+            expect(e.element(by.className('todo-card-status')).getText()).toEqual('true');
+        });
+    });
+
     it('Should type 2 in the limit filter and check that it returned the correct todos', () => {
       page.typeInput('todo-limit-input', '2');
 
       // should only see todos from Blanche
       expect(page.getTodoCards().count()).toBe(2);
   });
-
 });
+

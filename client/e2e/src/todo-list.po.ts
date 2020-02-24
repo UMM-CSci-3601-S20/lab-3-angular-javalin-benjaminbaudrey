@@ -23,4 +23,11 @@ export class TodoPage {
         input.click();
         input.sendKeys(text);
     }
+
+    selectMatSelectValue(selectID: string, value: string) {
+        let sel = element(by.id(selectID));
+        return sel.click().then(() => {
+          return element(by.css('mat-option[value="' + value + '"]')).click();
+        });
+      }
 }

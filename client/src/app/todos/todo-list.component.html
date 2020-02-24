@@ -28,6 +28,26 @@
           </mat-form-field>
 
         </div>
+
+        <div fxLayout="row wrap" fxLayoutGap="10px">
+          <!--Filtering todos by body on the server-->
+          <mat-form-field class="todo-input-field">
+            <mat-label>Body</mat-label>
+            <input matInput id="todo-body-input" type="string" placeholder="Filter by body" [(ngModel)]="todoBody"
+              (input)="getTodosFromServer()">
+          </mat-form-field>
+
+          <mat-form-field class="todo-input-field">
+            <mat-label>Status</mat-label>
+            <mat-select (selectionChange)="getTodosFromServer()" [(ngModel)]="todoStatus" id="todo-status-select">
+              <mat-option>--</mat-option>
+              <mat-option value="complete">Complete</mat-option>
+              <mat-option value="incomplete">Incomplete</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </div>
+
       </mat-card-content>
     </mat-card>
   </div>
@@ -36,11 +56,11 @@
 <div fxLayout="row">
   <div fxFlex fxFlex.gt-sm="80" fxFlexOffset.gt-sm="10" *ngIf="serverFilteredTodos; else todosError">
 
-      <!-- Card grid view -->
-      <div fxLayout="row wrap" fxLayoutGap="10px" class="todo-cards-container">
-        <app-todo-card simple="true" *ngFor="let todo of filteredTodos" class="todo-card" [todo]="todo"
-          fxFlex="1 1 280px"></app-todo-card>
-      </div>
+    <!-- Card grid view -->
+    <div fxLayout="row wrap" fxLayoutGap="10px" class="todo-cards-container">
+      <app-todo-card simple="true" *ngFor="let todo of filteredTodos" class="todo-card" [todo]="todo"
+        fxFlex="1 1 280px"></app-todo-card>
+    </div>
 
   </div>
 
